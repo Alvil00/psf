@@ -2,8 +2,10 @@
 
 namespace psf {
 
+//! Some basic preferences for programm
 struct BaseTraits {
 
+  // Float point precision used for programm thing
   using float_type = double;
 
   //! Default absolute tolerance for geometric comparisons.

@@ -35,6 +35,7 @@ public:
     return std::sqrt(SquareMagnitude());
   }
 
+  //! Return if the magnitude is near zero
   constexpr bool IsZero(value_type theTolerance = BaseTraits::Precision) const noexcept {
     return SquareMagnitude() <= theTolerance * theTolerance;
   }
@@ -50,7 +51,7 @@ public:
 
   //! Returns a unit-length copy; a vector within theTolerance of zero yields the zero vector.
   Vector2d Normalized(value_type theTolerance = BaseTraits::Precision) const noexcept {
-    Vector2d aResult = *this;
+    auto aResult = *this;
     aResult.Normalize(theTolerance);
     return aResult;
   }

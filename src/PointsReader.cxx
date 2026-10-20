@@ -1,5 +1,7 @@
 #include "psf/PointsReader.hxx"
 
+#include "psf/DebugOutput.hxx"
+
 #include <algorithm>
 #include <charconv>
 #include <cmath>
@@ -162,6 +164,13 @@ std::vector<Point2d> PointsReader::Parse(std::string_view theBuffer) {
     ParseLine(LineView{aPos, std::find(aPos, aLineEnd, '#'), aLineNumber}, aPoints);
     aPos = aNext;
   }
+
+#if PSF_DEBUG_OUTPUT_ENABLED
+  DebugOutput::Line("read") << aPoints.size() << " points\n";
+  for (std::size_t i = 0; i < aPoints.size(); ++i) {
+    DebugOutput::Line("read") << "input " << i << ' ' << DebugOutput::Point(aPoints[i]) << '\n';
+  }
+#endif
   return aPoints;
 }
 
